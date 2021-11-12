@@ -1,13 +1,13 @@
 [package]
-name = "qndr"
-version = "0.1.7"
+name = "spiderman"
+version = "0.0.1"
 edition = "2021"
 authors = ["bilal <skillzaa.com@gmail.com>"]
-description = "A quick and dirty regex helping tool"
+description = "A general purpose event based string parser."
 
-repository = "https://github.com/skillzaa/qndr.git"
-homepage = "https://github.com/skillzaa/qndr.git"
-documentation = "https://docs.rs/qndr/"
+repository = "https://github.com/skillzaa/spiderman.git"
+homepage = "https://github.com/skillzaa/spiderman.git"
+documentation = "https://docs.rs/spiderman/"
 
 license = "MIT OR Apache-2.0"
 readme = "README.md"
