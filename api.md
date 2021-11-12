@@ -6,7 +6,7 @@
  let trig = spider.events.add("event_name)
  handler().look_for("##").at().line_end();  
  
-- events
+- triggers
     - new  :method (event_name,event_handler)->Self
     - event_handler *This is the fn pointer*
     - kill :method (event_name)->bool
@@ -27,27 +27,29 @@
             <!-- no more -->
 
 - Recordings
-    - new (recording_name)
-    - start
-    - stop/stop
-    <!-- - save_to_file
-    - read_from_file -->
-    - clear (clear the recording buffer)
-    - clear_recent: waste the latest buffer values
+    - add (name)
     - kill
-    <!-- - append_text : before current buffer-later -->
-    <!-- - prepend_text --later -->
-    - write (write another data to this buffer)
-    - read (read from this buffer)->return string
-        <!-- stitch with another recording -->
-    <!-- - stitch_record_prepend () -->
-    <!-- - stitch_record_postpend () -->
-    <!-- - stitch_file_prepend () -->
-    <!-- - stitch_file_postpend () -->
+    - get 
+    - Record
+        - start (name)
+        - stop/stop(name)
+        <!-- - save_to_file
+        - read_from_file -->
+        - clear (clear the recording buffer)(name)
+        - clear_recent: waste the latest buffer values(name)
+        <!-- - append_text : before current buffer-later -->
+        <!-- - prepend_text --later -->
+        - write (write another data to this buffer)
+        - read (read from this buffer)->return string
+            <!-- stitch with another recording -->
+        <!-- - stitch_record_prepend () -->
+        <!-- - stitch_record_postpend () -->
+        <!-- - stitch_file_prepend () -->
+        <!-- - stitch_file_postpend () -->
 
 <!-- Next feature -->
 - Process
-    - new(process_name,event_handler)  
+    - add(process_name,event_handler)  
     - start  
     - stop  
     - kill  

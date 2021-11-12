@@ -1,3 +1,6 @@
+mod recording;
+mod trigger;
+mod process;
 pub struct At {u:u32}
 impl At {
    pub fn new(u:u32)->Self{
@@ -11,9 +14,7 @@ impl At {
    }
 }
 pub struct SpiderMan {
-    odd:fn(),
-    even:fn(),
-    // my_at:At,
+  
 }
 impl SpiderMan {
     pub fn new(odd:fn(),even:fn())->Self{
