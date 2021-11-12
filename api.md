@@ -1,30 +1,33 @@
-# spiderman - An event based string parser.
+# API.
 2021-11-12
 ---
-> Purpose
-
----
-> The API
----
 - SPIDERMSN
-<!-- The lib is rdesigned based on line by line reading. -->
-- Event
-    - new  :method (event_name)
-    - kill :method ()
-    - life  :property (till_end,once,x_times())
-    - execute: *This is the fn pointer*
-    <!-- // isnt it anti patter ? -->
-    - fire() 
-- Event Types    
-    - look_for_event: property (line_begin,line_end,line_mid, anywhere)
-    -  every_line_begin    
-    -  every_line_end
-    -  file_end
-    -  half_done
-    -  percent_done(x)
+ Trigger Syntax --- Builder Pattern
+ let trig = spider.events.add("event_name)
+ handler().look_for("##").at().line_end();  
+ 
+- events
+    - new  :method (event_name,event_handler)->Self
+    - event_handler *This is the fn pointer*
+    - kill :method (event_name)->bool
+    - run  :property (till_end,once,x_times())
+    - look_for :property &str
+    - at :property
+        - line_begin
+        - line_end
+        - line_mid
+        - anywhere
+       <!-- //already exists by default  -->
+    -  line_begin     
+    -  line_end    
+    -  file_begin    
+    -  file_end    
+    <!-- -  half_done--later -->
+    <!-- -  percent_done(x)--later -->
             <!-- no more -->
+
 - Recordings
-    - new
+    - new (recording_name)
     - start
     - stop/stop
     <!-- - save_to_file
@@ -32,21 +35,21 @@
     - clear (clear the recording buffer)
     - clear_recent: waste the latest buffer values
     - kill
-    - append 
-    - prepend
+    <!-- - append_text : before current buffer-later -->
+    <!-- - prepend_text --later -->
     - write (write another data to this buffer)
     - read (read from this buffer)->return string
         <!-- stitch with another recording -->
-    - stitch_record_prepend ()
-    - stitch_record_postpend ()
-    - stitch_file_prepend ()
-    - stitch_file_postpend ()
+    <!-- - stitch_record_prepend () -->
+    <!-- - stitch_record_postpend () -->
+    <!-- - stitch_file_prepend () -->
+    <!-- - stitch_file_postpend () -->
 
 <!-- Next feature -->
 - Process
-    - new(process_name)  
+    - new(process_name,event_handler)  
     - start  
     - stop  
     - kill  
-    - execute : *This is the fn pointer*  
+    - event_handler : *This is the fn pointer*  
 ---
