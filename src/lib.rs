@@ -1,19 +1,21 @@
 mod recording;
 mod trigger;
 mod process;
-
+mod flag;
 pub use trigger::At;
 use trigger::Triggers;
-use recording::Recording;
+use recording::Recordings;
+// use flag::Flags;
+//------------------
 pub struct SpiderMan {
-pub recordings :Recording,
+pub recordings :Recordings,
 pub triggers :Triggers,
     string_data:String
 }
 impl SpiderMan {
     pub fn new(string_data:String)->Self{
         SpiderMan {
-            recordings : Recording::new(),
+            recordings : Recordings::new(),
             triggers : Triggers::new(),
             string_data,
         }  

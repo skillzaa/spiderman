@@ -5,7 +5,6 @@ use std::error::Error;
 fn welcome(){
  let string_data  = std::fs::read_to_string("./abc.txt").unwrap();
  let mut spiderman = SpiderMan::new(string_data);
- let aa = spiderman.triggers;
     let start_triggers = spiderman
     .triggers.add("start_trigger",
         String::from("###<"),
@@ -13,7 +12,7 @@ fn welcome(){
                 start_handler);
 // ("end_trigger");
 let end_triggers = spiderman
-.triggers.add("start_trigger",
+.triggers.add("end_trigger",
     String::from("###>"),
         At::LineStart,
             end_handler);

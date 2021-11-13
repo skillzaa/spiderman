@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 mod at;
 mod trigger;
-pub use at::At;
 use trigger::Trigger;
+pub use at::At;
 
 pub struct Triggers {
     trigger:HashMap<String,Trigger>,

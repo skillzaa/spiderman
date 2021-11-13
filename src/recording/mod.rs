@@ -1,14 +1,13 @@
 use std::collections::HashMap;
-use std::io::Error;
 mod record;
 use record::Record;
-pub struct Recording {
+pub struct Recordings {
     records:HashMap<String,Record>,
 }
 
-impl Recording {
+impl Recordings {
     pub fn new()->Self{
-        Recording {
+        Recordings {
             records:HashMap::new(),
         }
     }
@@ -26,7 +25,3 @@ impl Recording {
         if r.is_some() {true}else{false}
     }
 }
-
-// pub fn abc(){
-//     // let a = Recordings::
-// }
