@@ -55,3 +55,19 @@
     - kill  
     - event_handler : *This is the fn pointer*  
 ---
+
+// pub fn welcome(f: fn() -> String)->Option<u32>{
+
+// pub fn welcome(){
+// let name = "abc";    
+// let mut spiderman = SpiderMan::new("sssewsaz".to_string());
+// let tf = spiderman.recordings.add(name);
+// let rec = spiderman.recordings.get(name)
+// .unwrap();
+// rec.start();
+// rec.start();
+// rec.start();
+// rec.start();
+// rec.start();
+// println!("{:?}",rec.read());
+// }

@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::io::Error;
+// use std::io::Error;
 mod trigger;
 use trigger::{Trigger,At};
 pub struct Triggers {
@@ -24,6 +24,11 @@ impl Triggers {
     pub fn kill(&mut self,name:&str)->bool{
         let r =self.trigger.remove(name);
         if r.is_some() {true}else{false}
+    }
+    pub fn run(&mut self,the_line:&str){
+        for (name,trig) in self.trigger {
+
+        }
     }
 }
 

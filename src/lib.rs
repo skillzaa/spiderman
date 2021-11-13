@@ -1,7 +1,9 @@
 mod recording;
 mod trigger;
 mod process;
-pub use recording::Recording;
+
+use trigger::Triggers;
+use recording::Recording;
 pub struct At {u:u32}
 impl At {
    pub fn new(u:u32)->Self{
@@ -16,38 +18,20 @@ impl At {
 }
 pub struct SpiderMan {
     recordings :Recording,
+pub triggers :Triggers,
     string_data:String
 }
 impl SpiderMan {
     pub fn new(string_data:String)->Self{
         SpiderMan {
             recordings : Recording::new(),
+            triggers : Triggers::new(),
             string_data,
         }  
     }
     pub fn execute(&mut self){
         for the_line in self.string_data.lines(){
-            process_line(the_line);
+            self.triggers.run(&the_line);
         }
     }
-    
-
-}
-// pub fn welcome(f: fn() -> String)->Option<u32>{
-fn process_line(the_line){
-
-
-}
-pub fn welcome(){
-let name = "abc";    
-let mut spiderman = SpiderMan::new("sssewsaz".to_string());
-let tf = spiderman.recordings.add(name);
-let rec = spiderman.recordings.get(name)
-.unwrap();
-rec.start();
-rec.start();
-rec.start();
-rec.start();
-rec.start();
-println!("{:?}",rec.read());
 }
