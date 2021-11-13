@@ -16,21 +16,32 @@ impl At {
 }
 pub struct SpiderMan {
     recordings :Recording,
+    string_data:String
 }
 impl SpiderMan {
     // pub fn new(odd:fn(),even:fn())->Self{
-    pub fn new()->Self{
+    pub fn new(string_data:String)->Self{
         SpiderMan {
             recordings : Recording::new(),
-            
+            string_data,
         }  
     }
+    pub fn execute(&mut self){
+        for the_line in self.string_data.lines(){
+            process_line(the_line);
+        }
+    }
+    
 
 }
 // pub fn welcome(f: fn() -> String)->Option<u32>{
+fn process_line(the_line){
+
+
+}
 pub fn welcome(){
 let name = "abc";    
-let mut spiderman = SpiderMan::new();
+let mut spiderman = SpiderMan::new("sssewsaz".to_string());
 let tf = spiderman.recordings.add(name);
 let rec = spiderman.recordings.get(name)
 .unwrap();
