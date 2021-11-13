@@ -1,8 +1,5 @@
-pub enum At {
-    LineStart,
-    LineEnd,
-    Anywhere,
-}
+use super::At;
+// use at::At;
 pub struct Trigger {
     name: String,
     look_for:String,

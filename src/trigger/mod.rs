@@ -1,7 +1,9 @@
 use std::collections::HashMap;
-// use std::io::Error;
+mod at;
 mod trigger;
-use trigger::{Trigger,At};
+pub use at::At;
+use trigger::Trigger;
+
 pub struct Triggers {
     trigger:HashMap<String,Trigger>,
 }
@@ -17,7 +19,7 @@ impl Triggers {
     let x = self.trigger.insert(name.to_string(), trig);
         if x.is_some() {true}else{false}
     }
-    pub fn get(&mut self,name:&str)->Option<&mut Record>{
+    pub fn get(&mut self,name:&str)->Option<&mut Trigger>{
         self.trigger.get_mut(name)
     }
     
@@ -26,8 +28,8 @@ impl Triggers {
         if r.is_some() {true}else{false}
     }
     pub fn run(&mut self,the_line:&str){
-        for (name,trig) in self.trigger {
-
+        for (name,trig) in self.trigger.iter() {
+            trig.execute(&the_line.to_string());
         }
     }
 }

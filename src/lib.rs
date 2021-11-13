@@ -2,20 +2,9 @@ mod recording;
 mod trigger;
 mod process;
 
+pub use trigger::At;
 use trigger::Triggers;
 use recording::Recording;
-pub struct At {u:u32}
-impl At {
-   pub fn new(u:u32)->Self{
-       At{u}
-   } 
-   pub fn abc(&self,u:u32)->u32{
-       u +100
-   } 
-   pub fn xyz(&self,u:u32)->u32{
-    u + 200
-   }
-}
 pub struct SpiderMan {
     recordings :Recording,
 pub triggers :Triggers,
