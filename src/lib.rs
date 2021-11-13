@@ -1,6 +1,7 @@
 mod recording;
 mod trigger;
 mod process;
+pub use recording::Recording;
 pub struct At {u:u32}
 impl At {
    pub fn new(u:u32)->Self{
@@ -14,40 +15,29 @@ impl At {
    }
 }
 pub struct SpiderMan {
-  
+    recordings :Recording,
 }
 impl SpiderMan {
-    pub fn new(odd:fn(),even:fn())->Self{
+    // pub fn new(odd:fn(),even:fn())->Self{
+    pub fn new()->Self{
         SpiderMan {
-            odd,
-            even,
-            // my_at : At::new(),
-        }
-    }
-    pub fn look_for(&self,u:u32)->At{
-        At::new(u)
-    }
-    pub fn run(&self){
-    let a = [0,1,2,3,4,5,6,7,8,9];
-
-    for n in a {
-        if ( n % 2 == 0 ) {
-            (&self.odd)();
-        }
-        else {
-            (&self.even)();
-        }
+            recordings : Recording::new(),
+            
+        }  
     }
 
-    }
 }
-// pub fn welcome(f: fn() -> String)->String{
-//     // let ff = f
-//     let mut s = String::from("Hi...");
-//     s.push_str(f().as_str());
-//     s
-// }
-
-// pub fn run(){
-
-// }
+// pub fn welcome(f: fn() -> String)->Option<u32>{
+pub fn welcome(){
+let name = "abc";    
+let mut spiderman = SpiderMan::new();
+let tf = spiderman.recordings.add(name);
+let rec = spiderman.recordings.get(name)
+.unwrap();
+rec.start();
+rec.start();
+rec.start();
+rec.start();
+rec.start();
+println!("{:?}",rec.read());
+}

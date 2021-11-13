@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::io::Error;
 mod record;
 use record::Record;
 pub struct Recording {
@@ -6,13 +7,18 @@ pub struct Recording {
 }
 
 impl Recording {
-    pub fn add(&mut self,name:&str)->Option<Record>{
+    pub fn new()->Self{
+        Recording {
+            records:HashMap::new(),
+        }
+    }
+    pub fn add(&mut self,name:&str)->bool{
         let rec = Record::new(name);
         let x = self.records.insert(name.to_string(), rec);
-        x
+        if x.is_some() {true}else{false}
     }
-    pub fn get(&self,name:&str)->Option<&Record>{
-        self.records.get(name)
+    pub fn get(&mut self,name:&str)->Option<&mut Record>{
+        self.records.get_mut(name)
     }
     
     pub fn kill(&mut self,name:&str)->bool{
