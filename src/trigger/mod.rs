@@ -20,9 +20,8 @@ impl Triggers {
         if x.is_some() {true}else{false}
     }
     pub fn get(&mut self,name:&str)->Option<&mut Trigger>{
-        self.trigger.get_mut(name)
+                self.trigger.get_mut(name)
     }
-    
     pub fn kill(&mut self,name:&str)->bool{
         let r =self.trigger.remove(name);
         if r.is_some() {true}else{false}

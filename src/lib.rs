@@ -6,7 +6,7 @@ pub use trigger::At;
 use trigger::Triggers;
 use recording::Recording;
 pub struct SpiderMan {
-    recordings :Recording,
+pub recordings :Recording,
 pub triggers :Triggers,
     string_data:String
 }
