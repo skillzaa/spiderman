@@ -5,7 +5,7 @@
  Trigger Syntax --- Builder Pattern
  let trig = spider.events.add("event_name)
  handler().look_for("##").at().line_end();  
- 
+  
 - triggers
     - add/new  :method (event_name,event_handler)->Self
     - event_handler *This is the fn pointer*

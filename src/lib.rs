@@ -19,7 +19,6 @@ pub struct SpiderMan {
     string_data:String
 }
 impl SpiderMan {
-    // pub fn new(odd:fn(),even:fn())->Self{
     pub fn new(string_data:String)->Self{
         SpiderMan {
             recordings : Recording::new(),
