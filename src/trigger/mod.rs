@@ -1,5 +1,8 @@
 use std::collections::HashMap;
-use std::io::Error;
+// use std::io::Error;
+//note for future
+use crate::SpiderErrors; 
+// use SpiderErrors;
 mod at;
 mod trigger;
 use trigger::Trigger;
@@ -27,7 +30,7 @@ impl Triggers {
         let r =self.trigger.remove(name);
         if r.is_some() {true}else{false}
     }
-    pub fn execute(&mut self,the_line:&str)->Result<bool,Error>{
+    pub fn execute(&mut self,the_line:&str)->Result<bool,SpiderErrors>{
         for (_name,trig) in self.trigger.iter() {
             trig.execute(&the_line.to_string())?;
         }

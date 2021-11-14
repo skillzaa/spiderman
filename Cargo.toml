@@ -15,3 +15,4 @@ doctest = true
 
 
 [dependencies]
+thiserror = "1.0"

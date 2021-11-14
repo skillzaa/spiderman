@@ -1,5 +1,7 @@
 use super::At;
-use std::io::{Error,ErrorKind};
+use crate::SpiderErrors;
+// use errors::
+// use std::io::{Error,ErrorKind};
 // use at::At;
 struct SpiderPack{
     flag:bool,
@@ -43,17 +45,16 @@ impl Trigger {
     fn anywhere(&self, line:&String)->bool{
         true
     }    
-    fn run_trigger(&self,line:&String)->Result<bool,Error>{
+    fn run_trigger(&self,line:&String)->Result<bool,SpiderErrors>{
         let _spiderPact = SpiderPack::new();
             match (self.pointer)() {
                 true=>{return Ok(true);},
                 false=>{
-                    let e = Error::new(ErrorKind::BrokenPipe,"the trigger handler function provided by the user has returned false");
-                    Err(e)
+                    Err(SpiderErrors::UserReturnedFalse)
                 },
             }
     }
-    pub fn execute(&self,line:&String)->Result<bool,Error>{
+    pub fn execute(&self,line:&String)->Result<bool,SpiderErrors>{
         match self.at {
             At::LineStart=>{
                 if self.line_start(line){
