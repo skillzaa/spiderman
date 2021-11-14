@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::io::Error;
 mod at;
 mod trigger;
 use trigger::Trigger;
@@ -26,13 +27,10 @@ impl Triggers {
         let r =self.trigger.remove(name);
         if r.is_some() {true}else{false}
     }
-    pub fn run(&mut self,the_line:&str){
-        for (name,trig) in self.trigger.iter() {
-            trig.execute(&the_line.to_string());
+    pub fn execute(&mut self,the_line:&str)->Result<bool,Error>{
+        for (_name,trig) in self.trigger.iter() {
+            trig.execute(&the_line.to_string())?;
         }
+    Ok(true)    
     }
 }
-
-// pub fn abc(){
-//     // let a = Recordings::
-// }

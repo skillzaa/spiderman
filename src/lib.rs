@@ -2,6 +2,7 @@ mod recording;
 mod trigger;
 mod process;
 mod flag;
+use std::error::{Error};
 pub use trigger::At;
 use trigger::Triggers;
 use recording::Recordings;
@@ -20,9 +21,14 @@ impl SpiderMan {
             string_data,
         }  
     }
-    pub fn execute(&mut self){
+    /// The fn execute will run the triggers for each line
+    pub fn execute(&mut self)->bool{
         for the_line in self.string_data.lines(){
-            self.triggers.run(&the_line);
+            match self.triggers.execute(&the_line){
+                Ok(_t)=>{continue;},
+                Err(_e)=>{return false}
+            }
         }
+        true
     }
 }

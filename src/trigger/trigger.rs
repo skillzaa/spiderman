@@ -1,19 +1,30 @@
 use super::At;
+use std::io::{Error,ErrorKind};
 // use at::At;
+struct SpiderPack{
+    flag:bool,
+    }
+impl SpiderPack{
+    pub fn new()->Self{
+        SpiderPack {
+           flag:true, 
+        }
+    }
+}    
 pub struct Trigger {
     name: String,
     look_for:String,
     at:At,
-    handle:fn()->bool,
+    pointer:fn()->bool,
 }
 
 impl Trigger {
-    pub fn new(name:&str,look_for:String,at:At,handle:fn()->bool)->Self{
+    pub fn new(name:&str,look_for:String,at:At,pointer:fn()->bool)->Self{
         Trigger {
             name: String::from(name),
             look_for,
             at,
-            handle
+            pointer
         }
     }
     fn  line_start(&self, line:&String)->bool{
@@ -32,25 +43,35 @@ impl Trigger {
     fn anywhere(&self, line:&String)->bool{
         true
     }    
-    fn run_trigger(&self,line:&String){
-        (self.handle)();
+    fn run_trigger(&self,line:&String)->Result<bool,Error>{
+        let _spiderPact = SpiderPack::new();
+            match (self.pointer)() {
+                true=>{return Ok(true);},
+                false=>{
+                    let e = Error::new(ErrorKind::BrokenPipe,"the trigger handler function provided by the user has returned false");
+                    Err(e)
+                },
+            }
     }
-    pub fn execute(&self,line:&String){
+    pub fn execute(&self,line:&String)->Result<bool,Error>{
         match self.at {
             At::LineStart=>{
                 if self.line_start(line){
-                    self.run_trigger(line);
-                }
+                    let r = self.run_trigger(line);
+                    r
+                }else {Ok(true)}
             },
             At::LineEnd=>{
                 if self.line_end(line){
-                    self.run_trigger(line);
-                }
+                    let r = self.run_trigger(line);
+                    r
+                }else{Ok(true)}
             },
             At::Anywhere=>{
                 if self.anywhere(line){
-                    self.run_trigger(line);
-                }
+                    let r = self.run_trigger(line);
+                    r
+                }else{Ok(true)}
             },
         }
     }
