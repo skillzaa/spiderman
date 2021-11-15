@@ -20,7 +20,8 @@ spiderman.execute();
 }
 
 fn start_handler(spider_pack:&mut SpiderPack)->bool{
-    match spider_pack.recordings.get("first_recorder") {
+    let fr = spider_pack.recordings.get("first_recorder");
+    match fr {
         Some(f)=>{
             f.start();
             return true;

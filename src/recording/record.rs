@@ -28,11 +28,11 @@ impl Record {
         self.data = String::from("");
     }
     pub fn append(&mut self,data:String)->bool{
-        //if self.is_start(){
+        if self.is_start(){
             self.data.push_str(&data);
             return true;
-       // }
-        //false
+       }
+        false
     }
     pub fn read(&self)->String{
         let copy = self.data.clone();
