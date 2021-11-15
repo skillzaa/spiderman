@@ -1,6 +1,17 @@
 # API.
 2021-11-12
 ---
+pwd
+ctl + l
+ls -l
+man ls
+touch //create file
+nano abc.txt 
+cat
+mkdir abc
+cd -
+
+
 - SPIDERMSN
  Trigger Syntax --- Builder Pattern
  let trig = spider.events.add("event_name)

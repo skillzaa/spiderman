@@ -1,4 +1,4 @@
-use spiderman::{SpiderMan,At};
+use spiderman::{SpiderMan,At,SpiderPack};
 use std::error::Error;
 #[cfg(test)]
 #[test]
@@ -20,11 +20,11 @@ spiderman.execute();
     // ok(true)
 }
 
-fn start_handler()->bool{
-    println!("start Handler Working!!!!!!");
+fn start_handler(spider_pack:&SpiderPack)->bool{
+    println!("start Handler Working..{:?}!!!!!!",spider_pack);
     true
 }
-fn end_handler()->bool{
-    println!("End Handler Working!!!!!!");
+fn end_handler(spider_pack:&SpiderPack)->bool{
+    println!("End Handler Working..{:?}!!!!!!",spider_pack);
     true
 }
