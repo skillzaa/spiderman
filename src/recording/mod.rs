@@ -14,7 +14,9 @@ impl Recordings {
     pub fn add(&mut self,name:&str)->bool{
         let rec = Record::new(name);
         let x = self.records.insert(name.to_string(), rec);
-        if x.is_some() {true}else{false}
+        if x.is_some() 
+        {true}
+        else{false}
     }
     pub fn get(&mut self,name:&str)->Option<&mut Record>{
         self.records.get_mut(name)

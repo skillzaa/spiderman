@@ -9,7 +9,7 @@ impl Record {
     pub fn new(name:&str)->Self{
         Record {
             name: String::from(name),
-            data: Vec::<char>::new(),
+            data: String::from(""),
             flag:false,
         }
     }
@@ -25,7 +25,7 @@ impl Record {
         self.flag
     }
     pub fn clear(&mut self){
-        self.data = Vec::<char>::new();
+        self.data = String::from("");
     }
     pub fn append(&mut self,data:&String)->bool{
         if self.is_start(){

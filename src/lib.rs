@@ -31,7 +31,7 @@ impl SpiderMan {
 
         for the_line in self.string_data.lines(){
             //-- process the triggers for current line
-            match self.triggers.execute(&the_line,&self.spider_pack){
+            match self.triggers.execute(&the_line,&mut self.spider_pack){
                 Ok(_t)=>{continue;},
                 Err(_e)=>{return false}
             }
@@ -40,6 +40,12 @@ impl SpiderMan {
                 record.append(&the_line.to_string());
             }
         }
+        self.eof();
         true
+    }
+    fn eof(&self){
+        for (name,record) in &self.recordings.records{
+            println!("EOF :: {}",record.read());
+        }
     }
 }

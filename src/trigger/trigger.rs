@@ -5,11 +5,11 @@ pub struct Trigger {
     name: String,
     look_for:String,
     at:At,
-    pointer:fn(&SpiderPack)->bool,
+    pointer:fn(&mut SpiderPack)->bool,
 }
 
 impl Trigger {
-    pub fn new(name:&str,look_for:String,at:At,pointer:fn(&SpiderPack)->bool)->Self{
+    pub fn new(name:&str,look_for:String,at:At,pointer:fn(&mut SpiderPack)->bool)->Self{
         Trigger {
             name: String::from(name),
             look_for,
@@ -33,7 +33,7 @@ impl Trigger {
     fn anywhere(&self, line:&String)->bool{
         true
     }    
-    fn run_trigger(&self,line:&String,spider_pack:&SpiderPack)->Result<bool,SpiderErrors>{
+    fn run_trigger(&self,line:&String,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
             match (self.pointer)(spider_pack) {
                 true=>{return Ok(true);},
                 false=>{
@@ -41,7 +41,7 @@ impl Trigger {
                 },
             }
     }
-    pub fn execute(&self,line:&String,spider_pack:&SpiderPack)->Result<bool,SpiderErrors>{
+    pub fn execute(&self,line:&String,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
         match self.at {
             At::LineStart=>{
                 if self.line_start(line){
