@@ -28,9 +28,9 @@ impl Triggers {
         let r =self.trigger.remove(name);
         if r.is_some() {true}else{false}
     }
-    pub fn execute(&mut self,the_line:&str,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
+    pub fn execute(&mut self,the_line:&String,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
         for (_name,trig) in self.trigger.iter() {
-            trig.execute(&the_line.to_string(),spider_pack)?;
+            trig.execute(the_line,spider_pack)?;
         }
     Ok(true)    
     }

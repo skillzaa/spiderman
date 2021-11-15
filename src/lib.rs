@@ -30,14 +30,15 @@ impl SpiderMan {
     pub fn execute(&mut self)->bool{
 
         for the_line in self.string_data.lines(){
+            let line_string = String::from(the_line);
             //-- process the triggers for current line
-            match self.triggers.execute(&the_line,&mut self.spider_pack){
+            match self.triggers.execute(&line_string,&mut self.spider_pack){
                 Ok(_t)=>{continue;},
                 Err(_e)=>{return false}
             }
             //-- process the records for current line
             for (name,record) in &self.recordings.records{
-                record.append(&the_line.to_string());
+                record.append(String::from(the_line));
             }
         }
         self.eof();
