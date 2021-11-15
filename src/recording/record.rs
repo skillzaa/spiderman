@@ -1,7 +1,7 @@
 
 pub struct Record {
     name:String,
-    data:Vec<char>,
+    data:String,
     flag:bool,
 }
 
@@ -13,21 +13,28 @@ impl Record {
             flag:false,
         }
     }
-    pub fn start(&mut self){
+    pub fn start(&mut self)->bool{
         self.flag = true; 
+        self.flag
     }
-    pub fn stop(&mut self){
-        self.flag = true;
+    pub fn stop(&mut self)->bool{
+        self.flag = false;
+        self.flag
+    }
+    pub fn is_start(&self)->bool{
+        self.flag
     }
     pub fn clear(&mut self){
         self.data = Vec::<char>::new();
     }
-    pub fn append(&mut self,data:String){
-        for  i in data.chars() {
-            self.data.push(i);
+    pub fn append(&mut self,data:&String)->bool{
+        if self.is_start(){
+            self.data.push_str(&data.clone());
+            return true;
         }
+        false
     }
-    pub fn read(&self)->Vec<char>{
+    pub fn read(&self)->String{
         let copy = self.data.clone();
         copy
     }

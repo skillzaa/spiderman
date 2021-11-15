@@ -4,6 +4,8 @@ use spiderman::{SpiderMan,At,SpiderPack};
 fn welcome(){
  let string_data  = std::fs::read_to_string("./abc.txt").unwrap();
  let mut spiderman = SpiderMan::new(string_data);
+ let first_recorder = spider_pack.recordings.add("first");
+
     let start_triggers = spiderman
     .triggers.add("start_trigger",
         String::from("###<"),
@@ -18,17 +20,14 @@ spiderman.execute();
 }
 
 fn start_handler(spider_pack:&mut SpiderPack)->bool{
-    spider_pack.recordings.add("first");
     match spider_pack.recordings.get("first") {
-        Some(x)=>{
-
+        Some(f)=>{
+            f.start();
         },
         None=>{
             
         }
     }
-    first_record.start();
-    // println!("start Handler Working..{:?}!!!!!!",spider_pack);
     true
 }
 fn end_handler(spider_pack:&SpiderPack)->bool{

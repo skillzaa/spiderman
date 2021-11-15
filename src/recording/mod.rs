@@ -2,7 +2,7 @@ use std::collections::HashMap;
 mod record;
 use record::Record;
 pub struct Recordings {
-    records:HashMap<String,Record>,
+pub records:HashMap<String,Record>,
 }
 
 impl Recordings {
@@ -18,8 +18,7 @@ impl Recordings {
     }
     pub fn get(&mut self,name:&str)->Option<&mut Record>{
         self.records.get_mut(name)
-    }
-    
+    }    
     pub fn kill(&mut self,name:&str)->bool{
         let r =self.records.remove(name);
         if r.is_some() {true}else{false}

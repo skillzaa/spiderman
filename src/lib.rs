@@ -28,10 +28,16 @@ impl SpiderMan {
     /// The fn execute will run the triggers for each
     /// line until the end of the file
     pub fn execute(&mut self)->bool{
+
         for the_line in self.string_data.lines(){
+            //-- process the triggers for current line
             match self.triggers.execute(&the_line,&self.spider_pack){
                 Ok(_t)=>{continue;},
                 Err(_e)=>{return false}
+            }
+            //-- process the records for current line
+            for (name,record) in &self.recordings.records{
+                record.append(&the_line.to_string());
             }
         }
         true
