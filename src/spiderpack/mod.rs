@@ -1,11 +1,12 @@
-#[derive(Debug)]
+use crate::Recordings;
+// #[derive(Debug)]
 pub struct SpiderPack{
-    flag:bool,
-    }
+pub  recordings:Recordings,
+}
 impl SpiderPack{
     pub fn new()->Self{
         SpiderPack {
-           flag:true, 
+          recordings:Recordings::new(),  
         }
     }
 }    
