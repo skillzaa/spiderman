@@ -33,12 +33,13 @@ impl SpiderMan {
             let line_string = String::from(the_line);
             //-- process the triggers for current line
             match self.triggers.execute(&line_string,&mut self.spider_pack){
-                Ok(_t)=>{continue;},
+                Ok(_t)=>{},
                 Err(_e)=>{return false}
             }
             //-- process the records for current line
-            for (name,record) in &self.recordings.records{
+            for (_name, record) in &mut self.recordings.records {
                 record.append(String::from(the_line));
+                // println!("{}: {}", name, record);
             }
         }
         self.eof();
