@@ -1,16 +1,14 @@
-use std::fmt::Debug;
-
 use super::At;
-use crate::SpiderErrors;
-use crate::SpiderPack;
 // #[derive(Debug)]
 /// The Trigger Struct look_for any given pattern with 
-/// in a line.
+/// in the current line being scanned by the app.
 /// Keep in mind that if it finds a pattern (as per the 
 /// look_for property) **Twice** in one line, it will 
-/// trigger just once. This will happen with the 
-/// Anywhere clause. 
-/// The execute method will strip empty space from a line end and start thus **Do not form triggers based on empty spaces"
+/// trigger just once. This situation happen with the 
+/// At::Anywhere clause. 
+/// The execute method will strip empty space from a 
+/// line end and start thus **Do not make triggers based 
+/// on empty spaces**
 pub struct Trigger {
     name: String,
     look_for:String,

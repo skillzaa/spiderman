@@ -1,4 +1,4 @@
-mod recording;
+mod recorders;
 mod trigger;
 mod process;
 mod flag;
@@ -8,10 +8,10 @@ pub use spiderpack::SpiderPack;
 use errors::SpiderErrors;
 pub use trigger::At;
 use trigger::Triggers;
-use recording::Recordings;
+use recorders::Recorders;
 //------------------
 pub struct SpiderMan {
-pub recordings :Recordings,
+pub recorders :Recorders,
 pub triggers :Triggers,
     spider_pack:SpiderPack,
     string_data:String,
@@ -19,7 +19,7 @@ pub triggers :Triggers,
 impl SpiderMan {
     pub fn new(string_data:String)->Self{
         SpiderMan {
-            recordings : Recordings::new(),
+            recorders : Recorders::new(),
             triggers : Triggers::new(),
             spider_pack:SpiderPack::new(),
             string_data,
@@ -37,7 +37,7 @@ impl SpiderMan {
                 Err(_e)=>{return false}
             }
             //-- process the records for current line
-            for (_name, record) in &mut self.recordings.records {
+            for (_name, record) in &mut self.recorders.records {
                 record.append(String::from(the_line));
                 // println!("{}: {}", name, record);
             }
@@ -46,8 +46,8 @@ impl SpiderMan {
         true
     }
     fn eof(&self){
-        for (name,record) in &self.recordings.records{
-            println!("EOF :: {}",record.read());
+        for (name,record) in &self.recorders.records{
+            println!("EOF :: {}",record.copy());
         }
     }
 }
