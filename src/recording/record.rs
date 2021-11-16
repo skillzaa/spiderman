@@ -6,7 +6,7 @@ pub struct Record {
 }
 
 impl Record {
-    pub fn new(name:&str)->Self{
+    pub fn new(name:&String)->Self{
         Record {
             name: String::from(name),
             data: String::from(""),

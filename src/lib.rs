@@ -28,7 +28,7 @@ impl SpiderMan {
     /// The fn execute will run the triggers for each
     /// line until the end of the file
     pub fn execute(&mut self)->bool{
-
+        let mut line_number = 1;
         for the_line in self.string_data.lines(){
             let line_string = String::from(the_line);
             //-- process the triggers for current line

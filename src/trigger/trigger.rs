@@ -45,7 +45,8 @@ impl Trigger {
         match self.at {
             At::LineStart=>{
                 if self.line_start(line){
-                    let r = self.run_trigger(line,spider_pack);
+                    let r = 
+                    self.run_trigger(line,spider_pack);
                     r
                 }else {Ok(true)}
             },

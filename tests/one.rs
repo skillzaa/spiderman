@@ -1,21 +1,30 @@
 use spiderman::{SpiderMan,At,SpiderPack};
 #[cfg(test)]
 #[test]
-fn welcome(){
- let string_data  = std::fs::read_to_string("./abc.txt").unwrap();
+fn test_uno(){
+ let incomming_data  = std::fs::read_to_string("./abc.txt");
+ assert!(incomming_data.is_ok());
+ //-----------------------------
+ let string_data  = incomming_data.unwrap();
  let mut spiderman = SpiderMan::new(string_data);
- let _ = spiderman.recordings.add("first_recorder");
+ //--create a record
+ let rec_result = spiderman.recordings.add("first_recorder");
+assert_eq!(rec_result,false); //Hashmap return None on first time entry of an elm 
 
-    let start_triggers = spiderman
+//--create trigger one (start_trigger) 
+    let start_trigger = spiderman
     .triggers.add("start_trigger",
         String::from("###<"),
             At::LineStart,
                 start_handler);
-let end_triggers = spiderman
+assert_eq!(start_trigger,false);
+//--create trigger two (end_trigger)                
+let end_trigger = spiderman
 .triggers.add("end_trigger",
     String::from("###>"),
         At::LineStart,
             end_handler);
+assert_eq!(end_trigger,false);            
 spiderman.execute();
 }
 
