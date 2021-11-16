@@ -17,7 +17,7 @@ impl Triggers {
         }
     }
     pub fn add(&mut self,name:&str,look_for:&str,at:At,handler:fn(spider_pack:&mut SpiderPack)->bool)->bool{
-    let trig = Trigger::new(name,look_for,at,handler);
+    let trig = Trigger::new(name,look_for,at);
     let x = self.trigger.insert(name.to_string(), trig);
         if x.is_some() {true}else{false}
     }
@@ -30,7 +30,7 @@ impl Triggers {
     }
     pub fn execute(&mut self,the_line:&String,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
         for (_name,trig) in self.trigger.iter() {
-            trig.execute(the_line,spider_pack)?;
+            //trig.execute(the_line,spider_pack)?;
         }
     Ok(true)    
     }
