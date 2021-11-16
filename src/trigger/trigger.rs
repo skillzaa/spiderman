@@ -1,4 +1,6 @@
 use super::At;
+use super::SpiderPack;
+use super::SpiderErrors;
 // #[derive(Debug)]
 /// The Trigger Struct look_for any given pattern with 
 /// in the current line being scanned by the app.
@@ -9,24 +11,31 @@ use super::At;
 /// The execute method will strip empty space from a 
 /// line end and start thus **Do not make triggers based 
 /// on empty spaces**
+/// You need to give it a function pointer with signature
+/// fn(spider_pack:&mut SpiderPack)->bool
+/// This event handler function will be run when the 
+/// trigger occure.
 pub struct Trigger {
     name: String,
     look_for:String,
     at:At,
+    event_handler:fn(spider_pack:&mut SpiderPack)->bool,
     
 }
 // pointer:fn(&mut SpiderPack)->bool,
     //pointer:fn(&mut SpiderPack
 impl Trigger {
-    pub fn new(name:&str,look_for:&str,at:At)->Self {
+    pub fn new(name:&str,look_for:&str,at:At,
+    event_handler:fn(spider_pack:&mut SpiderPack)->bool)->Self {
         Trigger {
             name: String::from(name),
             look_for: look_for.to_string(),
             at,
+            event_handler,
         }
     }    
-    // fn run_trigger(&self,line:&String,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
-    //         match (self.pointer)(spider_pack) {
+    // pub fn run_trigger(&self,line:&String,spider_pack:&mut SpiderPack)->bool,SpiderErrors>{
+    //         match (self.event_handler)(spider_pack) {
     //             true=>{return Ok(true);},
     //             false=>{
     //                 Err(SpiderErrors::UserReturnedFalse)
@@ -65,11 +74,20 @@ impl Trigger {
 #[cfg(test)]
 mod basics {
 use super::*;
+fn event_handler (_spider_pack:&mut SpiderPack)->bool{
+    if true {
+        true
+    }else{
+        false
+    }
+}
     #[test]
     fn trig_line_start() {
     //================    
         let tri = Trigger::new("new_trig",
-        "!", At::LineStart);
+        "!", At::LineStart,
+        event_handler
+    );
             assert_eq!(tri.name,"new_trig");
             assert_eq!(tri.look_for,"!");
     //===========================        
@@ -83,7 +101,7 @@ use super::*;
     fn trig_line_end() {
     //================    
         let tri = Trigger::new("new_trig",
-        "!", At::LineEnd);
+        "!", At::LineEnd,event_handler);
             assert_eq!(tri.name,"new_trig");
             assert_eq!(tri.look_for,"!");
     //===========================        
@@ -97,7 +115,7 @@ use super::*;
     fn trig_anywhere() {
     //================    
         let tri = Trigger::new("new_trig",
-        "!", At::Anywhere);
+        "!", At::Anywhere,event_handler);
             assert_eq!(tri.name,"new_trig");
             assert_eq!(tri.look_for,"!");
     //===========================        
