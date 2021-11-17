@@ -38,7 +38,7 @@ impl Recorder {
     /// append function will return true only if the 
     /// recorder is open AND the append goes 
     /// successfully. 
-    pub fn append(&mut self,data:String)->bool{
+    pub fn append(&mut self,data:&String)->bool{
         if self.flag {
             self.data.push_str(&data);
             return true;
@@ -61,7 +61,7 @@ use super::*;
 fn one(){
     let mut recorder = Recorder::new("one");
     recorder.start();
-    recorder.append("first entry..first entry..first entry..first entry..first entry..first entry..".to_string());
+    recorder.append(&"first entry..first entry..first entry..first entry..first entry..first entry..".to_string());
     assert!(!recorder.copy().is_empty());
 }
 #[test]
@@ -81,10 +81,10 @@ fn two(){
     for line in data.lines(){
         if counter % 2 == 0 {
             rec.start();
-            rec.append(String::from(line));
+            rec.append(&String::from(line));
         }else {
             rec.stop();
-            rec.append(String::from(line));
+            rec.append(&String::from(line));
         }
         counter = counter + 1;    
     }
@@ -112,10 +112,10 @@ fn three(){
     for line in data.lines(){
         if !(counter % 2 == 0) {
             rec.start();
-            rec.append(String::from(line));
+            rec.append(&String::from(line));
         }else {
             rec.stop();
-            rec.append(String::from(line));
+            rec.append(&String::from(line));
         }
         counter = counter + 1;    
     }

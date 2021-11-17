@@ -42,7 +42,7 @@ impl SpiderMan {
             
             //-- process the records for current line
             for (_name, record) in &mut self.spider_pack.recorders.records {
-                record.append(String::from(the_line));
+                record.append(&String::from(the_line));
                 // println!("{}: {}", name, record);
             }
         }
