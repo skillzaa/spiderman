@@ -32,6 +32,8 @@ impl Triggers {
             if trig.execute(the_line) {
               //----add to spider pack here
               spider_pack.current_line = String::from(the_line);  
+              spider_pack.line_after_event_excluding = get_line_excluding(the_line,&trig.look_for);
+              spider_pack.line_after_event_including = get_line_including(the_line,&trig.look_for);
             //   spider_pack. 
               //process the event here
               (trig.event_handler)(spider_pack); 
@@ -42,13 +44,29 @@ impl Triggers {
    
 }
 
-fn get_line_including(line:String,pattern:String)->String{
-    let first_char = pattern.chars().nth(0).unwrap();
-    let ret = String::from("");
-    for ch in line.chars() {
-        if ch == first_char {
-            
+fn get_line_including(line:&String,pattern:&String)->String{
+
+    let mut ret = String::from("pattern");
+    let mut flag = false;
+    let words = line.split_ascii_whitespace();
+    for word in words {
+        if word == pattern {flag=true;}
+        if flag == true {
+            ret.push_str(word);
         }
     }
-line
+ret
+}
+fn get_line_excluding(line:&String,pattern:&String)->String{
+
+    let mut ret = String::from("");
+    let mut flag = false;
+    let words = line.split_ascii_whitespace();
+    for word in words {
+        if word == pattern {flag=true;}
+        if flag == true {
+            ret.push_str(word);
+        }
+    }
+ret
 }
