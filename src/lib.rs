@@ -1,9 +1,11 @@
 mod recorders;
 mod trigger;
 mod process;
-mod flag;
+// mod flag;
 mod errors;
 mod spiderpack;
+mod flags;
+use flags::Flags;
 pub use spiderpack::SpiderPack;
 use errors::SpiderErrors;
 mod at;

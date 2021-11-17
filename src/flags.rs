@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-struct Flag {
+pub struct Flag {
     flag:bool,
 }
 impl Flag {
