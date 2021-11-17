@@ -13,7 +13,6 @@ use recorders::Recorders;
 pub struct SpiderMan {
 pub recorders :Recorders,
 pub triggers :Triggers,
-    spider_pack:SpiderPack,
     string_data:String,
 }
 impl SpiderMan {
@@ -21,21 +20,24 @@ impl SpiderMan {
         SpiderMan {
             recorders : Recorders::new(),
             triggers : Triggers::new(),
-            spider_pack:SpiderPack::new(),
             string_data,
         }  
     }
     /// The fn execute will run the triggers for each
     /// line until the end of the file
     pub fn execute(&mut self)->bool{
-        let mut line_number = 1;
+
         for the_line in self.string_data.lines(){
             let line_string = String::from(the_line);
             //-- process the triggers for current line
-            match self.triggers.execute(&line_string,&mut self.spider_pack){
-                Ok(_t)=>{},
-                Err(_e)=>{return false}
+            for (_name,trig) in &self.triggers.trigger {
+                if trig.execute(&line_string) {
+                  //process the event here
+                  let mut spider_pack:SpiderPack = SpiderPack::new(&self.recorders,line_string.clone());
+                  (trig.event_handler)(&mut self.recorders); 
+                }
             }
+            
             //-- process the records for current line
             for (_name, record) in &mut self.recorders.records {
                 record.append(String::from(the_line));
@@ -46,8 +48,11 @@ impl SpiderMan {
         true
     }
     fn eof(&self){
-        for (name,record) in &self.recorders.records{
+        for (_name,record) in &self.recorders.records{
             println!("EOF :: {}",record.copy());
         }
     }
+    // fn get_spider_pack(&self){
+    //     // SpiderPack::new(self.recorders,line_string);
+    // }
 }

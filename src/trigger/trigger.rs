@@ -19,7 +19,7 @@ pub struct Trigger {
     name: String,
     look_for:String,
     at:At,
-    event_handler:fn(spider_pack:&mut SpiderPack)->bool,
+pub event_handler:fn(spider_pack:&mut SpiderPack)->bool,
     
 }
 // pointer:fn(&mut SpiderPack)->bool,

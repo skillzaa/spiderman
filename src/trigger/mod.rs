@@ -7,7 +7,7 @@ use crate::spiderpack::SpiderPack;
 pub use at::At;
 
 pub struct Triggers {
-    trigger:HashMap<String,Trigger>,
+    pub trigger:HashMap<String,Trigger>,
 }
 
 impl Triggers {
@@ -30,9 +30,20 @@ impl Triggers {
     }
     pub fn execute(&mut self,the_line:&String,spider_pack:&mut SpiderPack)->Result<bool,SpiderErrors>{
         for (_name,trig) in self.trigger.iter() {
-            //trig.execute(the_line,spider_pack)?;
+            if trig.execute(the_line) {
+              //process the event here
+              (trig.event_handler)(spider_pack); 
+            }
         }
     Ok(true)    
+    }
+    fn get_spider_pack(event_handler:fn(spider_pack:SpiderPack)->bool,the_line:String){
+        // triggers
+        // flags
+        // rocords
+        // current_line 
+        // current_line_exclude
+        // current_line_include
     }
 }
 
