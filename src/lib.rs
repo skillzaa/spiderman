@@ -36,17 +36,9 @@ impl SpiderMan {
             
             //=========== The Execution
 
-            let r = 
+            let _r = 
             self.triggers.execute(&line_string, 
                 &mut self.spider_pack);
-            //-- process the triggers for current line
-            // for (_name,trig) in &self.triggers.trigger {
-            //     if trig.execute(&line_string) {
-            //       //process the event here
-            //     //   let mut spider_pack:SpiderPack = SpiderPack::new(&self.recorders,line_string.clone());
-            //       (trig.event_handler)(&mut self.spider_pack); 
-            //     }
-            // }
             
             //-- process the records for current line
             for (_name, record) in &mut self.spider_pack.recorders.records {
@@ -62,12 +54,5 @@ impl SpiderMan {
             println!("EOF :: {}",record.copy());
         }
     }
-    fn get_spider_pack(event_handler:fn(spider_pack:SpiderPack)->bool,the_line:String){
-        // triggers
-        // flags
-        // rocords
-        // current_line 
-        // current_line_exclude
-        // current_line_include
-    }
+    
 }

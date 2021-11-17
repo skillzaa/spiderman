@@ -46,8 +46,8 @@ fn start_handler(spider_pack:&mut SpiderPack)->bool{
 }
 fn end_handler(spider_pack:&mut SpiderPack)->bool{
     match spider_pack.recorders.get("first_recorder") {
-        Some(_f)=>{
-            //f.stop();
+        Some(f)=>{
+            f.stop();
         },
         None=>{
             
