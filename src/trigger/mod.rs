@@ -43,9 +43,12 @@ impl Triggers {
 }
 
 fn get_line_including(line:String,pattern:String)->String{
-// let r = line.rfind(pattern.as_str());
-// match r {
-//     Some(x)=>
-// }
+    let first_char = pattern.chars().nth(0).unwrap();
+    let ret = String::from("");
+    for ch in line.chars() {
+        if ch == first_char {
+            
+        }
+    }
 line
 }
