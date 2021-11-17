@@ -16,11 +16,10 @@ use super::SpiderErrors;
 /// This event handler function will be run when the 
 /// trigger occure.
 pub struct Trigger {
-    name: String,
-    look_for:String,
-    at:At,
+pub name: String,
+pub look_for:String,
+pub at:At,
 pub event_handler:fn(spider_pack:&mut SpiderPack)->bool,
-    
 }
 // pointer:fn(&mut SpiderPack)->bool,
     //pointer:fn(&mut SpiderPack
