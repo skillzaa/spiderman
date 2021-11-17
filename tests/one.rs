@@ -3,7 +3,7 @@ use spiderman::{SpiderMan,At,SpiderPack};
 #[test]
 fn test_uno(){
  let incomming_data  = 
- std::fs::read_to_string("./one.txt");
+ std::fs::read_to_string("./tests/one.txt");
  println!("{:?}",incomming_data);
  assert!(incomming_data.is_ok());
  //-----------------------------
@@ -49,6 +49,11 @@ fn end_handler(spider_pack:&mut SpiderPack)->bool{
         Some(f)=>{
             f.append(&spider_pack.current_line);
             f.stop();
+            let test_str = f.copy();
+            assert_eq!(
+                test_str,
+                "###<This is the text that needs to appear in the result and not the other text###>"
+            );
         },
         None=>{
             
