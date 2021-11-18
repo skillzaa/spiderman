@@ -4,7 +4,7 @@ use spiderman::{SpiderMan,At,SpiderPack};
 fn test_uno(){
  let incomming_data  = 
  std::fs::read_to_string("./tests/one.txt");
- println!("{:?}",incomming_data);
+//  println!("{:?}",incomming_data);
  assert!(incomming_data.is_ok());
  //-----------------------------
  let string_data  = incomming_data.unwrap();

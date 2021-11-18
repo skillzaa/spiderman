@@ -1,0 +1,26 @@
+##TaskBegin
+
+"move_data" = some data
+"move_data" = some data
+"move_data" = some data
+"move_data" = some data
+
+##TaskEnd
+
+##TaskBegin
+
+"create_dir_data" = some data
+"create_dir_data" = some data
+"create_dir_data" = some data
+"create_dir_data" = some data
+
+##TaskEnd
+
+##TaskBegin
+
+"some_other_task" = some data
+"some_other_task" = some data
+"some_other_task" = some data
+"some_other_task" = some data
+
+##TaskEnd
