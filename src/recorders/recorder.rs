@@ -1,5 +1,5 @@
 // This worked 
-use crate::spiderpack::SpiderPack;
+use crate::spiderpack::{self, SpiderPack};
 // but not this  
 // use crate::spiderpack; 
 // since in lib.rs only spiderpack::SpiderPack is inscope and not spiderpack
@@ -11,8 +11,8 @@ pub struct Recorder {
     skip_empty_lines:bool,
     skip:u32,
     auto_append:bool,
-    every_line: Option<fn(SpiderPack)->bool>,
-    eof: Option<fn(SpiderPack)->bool>,
+    every_line: Option<fn(&mut SpiderPack)->bool>,
+    eof: Option<fn(&mut SpiderPack)->bool>,
 }
 
 impl Recorder {
@@ -65,11 +65,11 @@ impl Recorder {
     /// buffer.*It is a copy not a reference to the original 
     /// buffer*
     pub fn every_line(&mut self,
-    event_handler : fn(SpiderPack)->bool ){
+    event_handler : fn(&mut SpiderPack)->bool ){
         self.every_line = Some(event_handler);
     }
     pub fn eof(&mut self,
-    event_handler : fn(SpiderPack)->bool ){
+    event_handler : fn(&mut SpiderPack)->bool ){
         self.eof = Some(event_handler);
     }
     pub fn skip(&mut self,number_of_lines:u32)->u32{
@@ -107,6 +107,15 @@ impl Recorder {
     }
     pub fn get_write_to_file(&self)->bool{
         self.write_to_file
+    }
+    pub fn run_eof(&self,spider_pack:&mut SpiderPack)->bool{
+        match self.eof {
+            Some(h)=>{
+                let r =(h)(spider_pack);
+                r
+            },
+            None=> false
+        }
     }
     pub fn copy(&self)->String{
         let copy = self.data.clone();

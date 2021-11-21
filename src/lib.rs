@@ -1,17 +1,16 @@
 mod recorders;
 mod trigger;
 mod process;
-// mod flag;
 mod errors;
 mod spiderpack;
 mod flags;
-use flags::Flags;
-pub use spiderpack::SpiderPack;
-use errors::SpiderErrors;
 mod at;
-pub use at::At;
+use flags::Flags;
+use errors::SpiderErrors;
 use trigger::Triggers;
 use recorders::Recorders;
+pub use spiderpack::SpiderPack;
+pub use at::At;
 //------------------
 pub struct SpiderMan {
 pub spider_pack :SpiderPack,
@@ -26,36 +25,37 @@ impl SpiderMan {
             string_data,
         }  
     }
-    pub fn add_record(){
 
-    }
-    /// The fn execute will run the triggers for each
-    /// line until the end of the file
-    pub fn execute(&mut self)->bool{
+/// The execute fn is the heart of the app. This runs 
+/// all the events and starts the process.
+pub fn execute(&mut self)->bool{
 
-        for the_line in self.string_data.lines(){
-            let line_string = String::from(the_line);
-            
-            //=========== The Execution
-
-            let _r = 
-            self.triggers.execute(&line_string, 
-                &mut self.spider_pack);
-            
-            //-- process the records for current line
-            for (_name, record) in &mut self.spider_pack.recorders.records {
-                // record.append(&String::from("\n"));
-                record.append(&String::from(the_line));
-                // println!("{}: {}", name, record);
-            }
-        }
-        self.eof();
-        true
-    }
-    fn eof(&self){
-        for (_name,record) in &self.spider_pack.recorders.records{
-            println!("EOF :: {}",record.copy());
-        }
-    }
+for the_line in self.string_data.lines(){
+    let line_string = String::from(the_line);
     
+    //=========== The Execution
+
+    let _r = 
+    self.triggers.execute(
+        &line_string, 
+        &mut self.spider_pack
+    );
+    
+    //-- process the records for current line
+    for (_name, record) in &mut self.spider_pack.recorders.records {
+        // record.append(&String::from("\n"));
+        record.append(&String::from(the_line));
+        // println!("{}: {}", name, record);
+    }
+}
+// self.eof();
+true
+}
+//===================================
+// fn eof(&self){
+//     for (_name, record) in &self.spider_pack.recorders.records {
+//         record.run_eof(&mut self.spider_pack);
+//     }
+// }
+//-----------lib ends    
 }
