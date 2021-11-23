@@ -33,8 +33,8 @@ pub fn execute(&mut self)->bool{
 for the_line in self.string_data.lines(){
     let line_string = String::from(the_line);
     
-    //=========== The Execution
-
+//=========== The Execution
+//--the triggers obj will loop all the triggers in it
     let _r = 
     self.triggers.execute(
         &line_string, 
@@ -46,6 +46,13 @@ for the_line in self.string_data.lines(){
         // record.append(&String::from("\n"));
         record.append(&String::from(the_line));
         // println!("{}: {}", name, record);
+    }
+    //-- process the records for EVERY line
+    for (name, record) in &mut self.spider_pack.recorders.records {
+
+        // record.append(&String::from("\n"));
+        // record.append(&String::from(the_line));
+        println!("{}: {}", name, record.copy());
     }
 }
 // self.eof();

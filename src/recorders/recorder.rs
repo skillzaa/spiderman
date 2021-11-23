@@ -6,7 +6,7 @@ use crate::spiderpack::{self, SpiderPack};
 pub struct Recorder {
     name:String,
     data:String,
-    mode:bool,
+    start:bool,
     write_to_file:bool,
     skip_empty_lines:bool,
     skip:u32,
@@ -21,7 +21,7 @@ impl Recorder {
         Recorder {
             name: String::from(name),
             data: String::from(""),
-            mode:false,
+            start:false,
             write_to_file:false,
             skip_empty_lines:false,
             auto_append:true,
@@ -32,15 +32,15 @@ impl Recorder {
     }
     /// The start fn will make the recorder recording all the 
     pub fn start(&mut self)->bool{
-        self.mode = true; 
-        self.mode
+        self.start = true; 
+        self.start
     }
     pub fn stop(&mut self)->bool{
-        self.mode = false;
-        self.mode
+        self.start = false;
+        self.start
     }
     pub fn is_start(&self)->bool{
-        self.mode
+        self.start
     }
     pub fn clear(&mut self){
         self.data = String::from("");
@@ -55,7 +55,7 @@ impl Recorder {
     /// recorder is open AND the append goes 
     /// successfully. 
     pub fn append(&mut self,data:&String)->bool{
-        if self.mode {
+        if self.start {
             self.data.push_str(&data);
             return true;
        }
